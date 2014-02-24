@@ -37,6 +37,7 @@ class IndexController extends SiteBaseController {
     public function actionindex() {
 
 		$this->pageTitle[] =  Yii::t('global','Somalisingle Home') ;//Tesauro en español
+        
         $this->render('index');
     }
 
