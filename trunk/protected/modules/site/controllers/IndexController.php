@@ -36,9 +36,15 @@ class IndexController extends SiteBaseController {
 	 */
     public function actionindex() {
 
-		$this->pageTitle[] =  Yii::t('global','Somalisingle Home') ;//Tesauro en español
-        
-        $this->render('index');
+		$this->pageTitle[] =  Yii::t('global','Somalisingle Home') ;
+        $model= new Users();
+        if(isset($_POST['Users']))
+        {
+            $model->attributes=$_POST['Users'];
+            if($model->save());
+                $this->redirect(array('register','id'=>$model->id));
+        }
+        $this->render('index', compact('model'));
     }
 
 }

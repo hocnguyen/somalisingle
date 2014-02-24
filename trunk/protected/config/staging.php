@@ -8,7 +8,7 @@ $development = array(
 	'components' => array(
 		'db' =>  array(
                         'class' => 'CDbConnection',
-                        'connectionString' => 'mysql:host=localhost;dbname=synonyms',
+                        'connectionString' => 'mysql:host=localhost;dbname=somalisingle',
                         'username' => 'root',
                         'password' => '',
                         'charset' => 'UTF8',
