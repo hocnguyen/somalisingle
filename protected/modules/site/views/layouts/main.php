@@ -8,6 +8,7 @@
     <meta name="description" content="Your description">
     <meta name="keywords" content="Your keywords">
     <meta name="author" content="Your name">
+    <link rel="stylesheet" href="themes/default/css/validationEngine.jquery.css" type="text/css" media="screen">
     <link rel="stylesheet" href="themes/default/css/bootstrap.css" type="text/css" media="screen">
     <link rel="stylesheet" href="themes/default/css/responsive.css" type="text/css" media="screen">
     <link rel="stylesheet" href="themes/default/css/style.css" type="text/css" media="screen">
@@ -21,6 +22,8 @@
     <script type="text/javascript" src="themes/default/js/jquery.easing.1.3.js"></script>
     <script type="text/javascript" src="themes/default/js/touchTouch.jquery.js"></script>
     <script type="text/javascript" src="themes/default/js/bootstrap.js"></script>
+    <script type="text/javascript" src="themes/default/js/jquery.validationEngine.js"></script>
+    <script type="text/javascript" src="themes/default/js/jquery.validationEngine-en.js"></script>
     <script type="text/javascript">if($(window).width()>1024){document.write("<"+"script src='themes/default/js/jquery.preloader.js'></"+"script>");}	</script>
 
     <script>

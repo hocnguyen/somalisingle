@@ -13,34 +13,9 @@ class CustomUrlManager extends CUrlManager {
         $allLang = Languages::model()->findAll();
 		$active_lang = implode('|', array_keys( $allLang ));
 		$domain = Yii::app()->params['current_domain'];
-        $urlCurrent = $_SERVER['HTTP_HOST'];
-        foreach(Yii::app()->params['defineUrl'] as $key=>$url){
-            if($urlCurrent == $url){
-                Yii::app()->language = $key;
-                break;
-            }
-        }
-        /*if($url == 'synonyms.loc'){
-            Yii::app()->language = 'es';
-        }*/
-		// if( ($urlrules = Yii::app()->cache->get('customurlrules')) === false )
-		// {
+
 			$_more = array();
-			
-			$dbCommand = Yii::app()->db->createCommand("SELECT alias, language FROM {{custompages}}")->query();
-			$urlRules = $dbCommand->readAll();
-			foreach($urlRules as $rule)
-			{
-				$_more[ "/<alias:({$rule['alias']})>" ] = array('site/custompages/index');
-			}
-			
-			
-			/*$dbCommand = Yii::app()->db->createCommand("SELECT id, seoname FROM {{members}}")->query();
-			$urlUsers = $dbCommand->readAll();
-			foreach($urlUsers as $uu)
-			{
-				$_more[ "/user/<id:({$uu['id']})>-<alias:({$uu['seoname']})>" ] = array('site/users/viewprofile');
-			}*/
+
 			
 			$this->rules = array(
 
