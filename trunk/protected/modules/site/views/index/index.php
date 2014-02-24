@@ -1,69 +1,76 @@
 <?php $this->widget('widgets.admin.notifications'); ?>
-<section class="clearfix">
-    <div class="row-fluid">
-        <div class="span12">
-            <div class="row-fluid">
-                <div class="span12">
-                    <div class="logo">
-                        <a href="/"><img src="/themes/default/images/logo.png" alt=""/></a>
-                        <p><?php echo Yii::t('global','Dictionary of synonyms online with more than 20,000 words'); ?></p>
-                    </div>
-                </div>
-            </div>
-            <div class="row-fluid wrap_content">
-                <div class="content">
-                    <div class="content_search">
-                        <ul class="nav nav-tabs" id="myTab">
-                            <li class="active"><a href="#home"><?php echo Yii::t('global','Synonym'); ?></a></li>
-                            <li><a href="#profile"><?php echo Yii::t('global','Definition'); ?></a></li>
-                            <?php foreach(Yii::app()->params['allowAntonym'] as $allowAntonnym):
-                                if(Yii::app()->language == $allowAntonnym) { ?>
-                                    <li><a href="#messages"><?php echo Yii::t('global','Antonym'); ?></a></li>
-                                <?php } endforeach;?>
-                        </ul>
-            
-                        <div class="tab-content">
-                            <div class="tab-pane active" id="home">
-                              <form method="post" action="" id="form-sinonimo">
-                                    <input id="buscar" type="text" class="input-large search-query" value="" placeholder="<?php echo Yii::t('global','Search'); ?>" name="sinonimo"/>
-                                    <button type="submit" class="btn btn-search" id="btn-buscar"><?php echo Yii::t('global','Search'); ?></button>
-                                    <div class="wrap_checkbox"><input type="checkbox" name="checksearch"> <?php echo Yii::t('global','Containing it'); ?></div>
-                                </form>
-                            </div>
-                            <div class="tab-pane" id="profile">
-                                 <form method="post" action="" id="form-definicion">
-                                    <input id="definicion" type="text" class="input-large search-query" value="" placeholder="<?php echo Yii::t('global','Definitions'); ?>" name="definicion"/>
-                                    <button type="submit" class="btn btn-search" id="btn-definicion"><?php echo Yii::t('global','Search'); ?></button>
-                                    <div class="wrap_checkbox"><input type="checkbox" name="checksearch"> <?php echo Yii::t('global','Containing it'); ?></div>
-                                </form>
-                            </div>
-                            <div class="tab-pane" id="messages">
-                                 <form method="post" action="" id="form-antonimos">
-                                    <input id="antonimos" type="text" class="input-large search-query" value="" placeholder="<?php echo Yii::t('global','Antonyms'); ?>" name="antonimos"/>
-                                    <button type="submit" class="btn btn-search" id="btn-antonimos"><?php echo Yii::t('global','Search'); ?></button>
-                                    <div class="wrap_checkbox"><input type="checkbox" name="checksearch"> <?php echo Yii::t('global','Containing it'); ?></div>
-                                </form>
+<div id="content" class="content-extra">
+    <div class="container">
+        <div class="row">
+            <article class="span6">
+                <div class="wrapper">
+                    <div class="register">
+                        <div class="row fix_height-row">
+                            <div class="span1">I am </div>
+                            <div class="span3">
+                                <input class="gender" type="radio" name="gender" id="male"/><label class="lbl_gender" for="male">Male </label>
+                                <input class="gender" type="radio" name="gender" id="female"/><label class="lbl_gender" for="female">Female </label>
                             </div>
                         </div>
-                        <script>
-                            $(function() {
-                                $('#myTab a:first').tab('show');
-                                $('#myTab a').click(function(e) {
-                                    e.preventDefault();
-                                    $(this).tab('show');
-                                    $('.result_search').html('');
-                                });
-                                $('input[type=checkbox]').prettyCheckable({
-                                    color: 'blue'
-                                });                                 
-                                
-                            });
-
-                        </script>
+                        <div class="row fix_height-row">
+                            <div class="span1">From </div>
+                            <div class="span3">
+                                <select class="span4">
+                                    <option>India</option>
+                                    <option>USA</option>
+                                    <option>Vietnam</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row fix_height-row">
+                            <div class="span1">Birthday </div>
+                            <div class="span3">
+                                <input class="birthday span4" type="text"/>
+                            </div>
+                        </div>
+                        <div class="row fix_height-row">
+                            <div class="span1">Username </div>
+                            <div class="span3">
+                                <input class="username span4" type="text"/>
+                            </div>
+                        </div>
+                        <div class="row fix_height-row">
+                            <div class="span1">Password </div>
+                            <div class="span3">
+                                <input class="password span4" type="password"/>
+                            </div>
+                        </div>
+                        <div class="row fix_height-row">
+                            <div class="span1">Email </div>
+                            <div class="span3">
+                                <input class="email span4" type="text"/>
+                            </div>
+                        </div>
+                        <div class="row fix_height-row">
+                            <div class="span1"></div>
+                            <div class="span3">
+                                <input class="sumit btn btn-success" type="submit" value="Register"/>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <?php $this->renderPartial('../elements/advertise'); ?>
-            </div>
+            </article>
+            <article class="span6">
+                <ul class="list-photo fix-position-photo">
+                    <li><a href="themes/default/img/image-blank.png" class="magnifier" ><img src="themes/default/img/1.jpg " alt="" /></a></li>
+                    <li><a href="themes/default/img/image-blank.png" class="magnifier" ><img src="themes/default/img/2.jpg " alt="" /></a></li>
+                    <li><a href="themes/default/img/image-blank.png" class="magnifier" ><img src="themes/default/img/3.jpg " alt="" /></a></li>
+                    <li class="last"><a href="themes/default/img/image-blank.png" class="magnifier" ><img src="themes/default/img/4.jpg " alt="" /></a></li>
+                    <li><a href="themes/default/img/image-blank.png" class="magnifier" ><img src="themes/default/img/5.jpg " alt="" /></a></li>
+                    <li><a href="themes/default/img/image-blank.png" class="magnifier" ><img src="themes/default/img/6.jpg " alt="" /></a></li>
+                    <li><a href="themes/default/img/image-blank.png" class="magnifier" ><img src="themes/default/img/7.jpg " alt="" /></a></li>
+                    <li class="last"><a href="themes/default/img/image-blank.png" class="magnifier" ><img src="themes/default/img/8.jpg " alt="" /></a></li>
+                    <li><a href="themes/default/img/image-blank.png" class="magnifier" ><img src="themes/default/img/9.png " alt="" /></a></li>
+                    <li><a href="themes/default/img/image-blank.png" class="magnifier" ><img src="themes/default/img/5.jpg " alt="" /></a></li>
+                    <li><a href="themes/default/img/image-blank.png" class="magnifier" ><img src="themes/default/img/6.jpg " alt="" /></a></li>
+                    <li class="last"><a href="themes/default/img/image-blank.png" class="magnifier" ><img src="themes/default/img/3.jpg " alt="" /></a></li>
+                </ul>
+            </article>
         </div>
     </div>
-</section>
+</div>
