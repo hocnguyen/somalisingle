@@ -295,7 +295,7 @@ class YiiBase
 	}
 	public static function powered()
 	{
-		return Yii::t('yii','Powered by {yii}.', array('{yii}'=>'<a href="http://netbiz.vn/" rel="external">NetBiz consulting</a>'));
+		return Yii::t('yii','Powered by {yii}.', array('{yii}'=>'<a href="http://hocn.vn/" rel="external">Hoc N</a>'));
 	}
 	public static function t($category,$message,$params=array(),$source=null,$language=null)
 	{
