@@ -1294,8 +1294,25 @@ footer {
     margin-right: 30px;
 }
 .fix-position-photo {
-    margin-top: 35px;
+    margin-top: 70px;
 }
 .fix_height-row {
    margin-bottom: 1%;
+}
+.lblterm {
+    margin-top: 4px;
+    float: right;
+    margin-right: 9%;
+}
+.space {
+    margin-right: 15px;
+}
+
+.fix_btn_submit {
+    margin-top: 10px;
+}
+.noticeStatus {
+    float: left;
+    margin-left: 25%;
+    color: red;
 }
