@@ -1,26 +1,23 @@
-<header >
-    <div class="header">
-        <div class="row-fluid">
+<header>
+    <div class="container clearfix">
+        <div class="row">
             <div class="span12">
-                <div class="title_header"><?php echo Yii::t('global','Sinónimo.com') ?> - <em><?php echo Yii::t('global','Thesaurus in Spanish') ?></em></div>
-                <?php 
-                    $Socials            = Banners::GetSocialTop();
-                    $content = '';
-                    foreach( $Socials as $Social ){
-                       $content = $Social['content'];
-                    }
-                    echo $content;
-                ?>
-              <?php /*  <ul id="social">
-                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                    <li><a href="#"><i class="fa fa-skype"></i></a></li>
-                    <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                    <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                    <li><a href="#"><i class="fa fa-envelope"></i></a></li>
-                </ul> */ ?>
+                <div class="navbar navbar_">
+                    <div class="container">
+                        <h1 class="brand brand_"><a href=""><img alt="" src="themes/default/img/logo.png"> </a></h1>
+                        <a class="btn btn-navbar btn-navbar_ " data-toggle="collapse" data-target=".nav-collapse_">Menu <span class="icon-bar"></span> </a>
+                        <div class="nav-collapse nav-collapse_  collapse fix_navbar">
+                            <ul class="nav sf-menu">
+                                <li class="active"><a href="">HOME</a></li>
+                                <li class="sub-menu"><a href="">SEARCH</a></li>
+                                <li><a href="">PHOTOS</a></li>
+                                <li><a href="">BLOGS</a></li>
+                                <li><a class="fix_menu" href="">WHO'S ONLINE</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-
 </header>

@@ -49,7 +49,7 @@ return array(
         'application.extensions.*',
     ),
     'theme' => 'default',
-    'name' => 'yassine',
+    'name' => 'Somalisingle',
     'defaultController' => 'site/index',
     'layout' => 'main',
     'charset' => 'UTF-8',
@@ -64,12 +64,7 @@ return array(
         'facebookappid' => '0',
         'facebookapikey' => '',
         'facebookapisecret' => '',
-        'allowAntonym'=>array('en'),
-        'defineUrl'=>array(
-            'es'=>'synonyms.loc',
-            'en'=>'www.sinónimo.com',
-            'vi'=>'www.sinónimo.vn',
-        )
+
     ),
     'aliases' => array(
         'helpers' => 'application.widgets',
