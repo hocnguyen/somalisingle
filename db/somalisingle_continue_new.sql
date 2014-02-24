@@ -100,6 +100,62 @@ CREATE TABLE `blogcats` (
   KEY `parentid` (`parentid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+CREATE TABLE `dating_search` (
+  `user_id` BIGINT(20) NOT NULL,
+  `gender` SMALLINT(6) DEFAULT NULL,
+  `age_min` SMALLINT(6) DEFAULT NULL,
+  `age_max` SMALLINT(6) DEFAULT NULL,
+  `country` INT(11) DEFAULT NULL,
+  `province` INT(11) DEFAULT NULL,
+  `city` INT(11) DEFAULT NULL,
+  `living_within_radius` SMALLINT(6) DEFAULT NULL,
+  `hair_color` LONGBLOB,
+  `hair_length` LONGBLOB,
+  `hair_type` LONGBLOB,
+  `eye_color` LONGBLOB,
+  `eye_wear` LONGBLOB,
+  `height_min` SMALLINT(6) DEFAULT NULL,
+  `height_max` SMALLINT(6) DEFAULT NULL,
+  `weight_min` SMALLINT(6) DEFAULT NULL,
+  `weight_max` SMALLINT(6) DEFAULT NULL,
+  `body_style` LONGBLOB,
+  `ethnicity` LONGBLOB,
+  `best_feature` LONGBLOB,
+  `body_art` LONGBLOB,
+  `appearance` LONGBLOB,
+  `drink` LONGBLOB,
+  `smoke` LONGBLOB,
+  `marital_status` LONGBLOB,
+  `children_have` LONGBLOB,
+  `children_number` SMALLINT(6) DEFAULT NULL,
+  `children_youngest` SMALLINT(6) DEFAULT NULL,
+  `children_oldest` SMALLINT(6) DEFAULT NULL,
+  `children_want` LONGBLOB,
+  `pets_have` LONGBLOB,
+  `occupation` LONGBLOB,
+  `employment_status` LONGBLOB,
+  `income_bracket` SMALLINT(6) DEFAULT NULL,
+  `home_type` LONGBLOB,
+  `living_situation` LONGBLOB,
+  `relocate` LONGBLOB,
+  `nationality` LONGBLOB,
+  `education` SMALLINT(6) DEFAULT NULL,
+  `language_spoken` LONGBLOB,
+  `english_ability` SMALLINT(6) DEFAULT NULL,
+  `vietnamese_ability` SMALLINT(6) DEFAULT NULL,
+  `religion` SMALLINT(6) DEFAULT NULL,
+  `chinese_sign` LONGBLOB,
+  `star_sign` LONGBLOB,
+  `facial_hair` LONGBLOB,
+  `id` INT(11) NOT NULL DEFAULT '0',
+  `title` VARCHAR(0) DEFAULT NULL,
+  `order_by` CHAR(50) DEFAULT NULL,
+  `have_image` SMALLINT(6) DEFAULT '0',
+  `searching_for` LONGBLOB,
+  PRIMARY KEY (`user_id`)
+) ENGINE=INNODB DEFAULT CHARSET=utf8
+
+
 /*Data for the table `blogcats` */
 
 /*Table structure for table `blogcomments` */
