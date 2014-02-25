@@ -94,7 +94,7 @@ class SitemapController extends SiteBaseController {
         }
 
         // Grab users rows
-        $usersRows = Members::model()->findAll();
+        $usersRows = Users::model()->findAll();
         if (count($usersRows)) {
             foreach ($usersRows as $usersRow) {
                 $_rows[] = $this->makeData($this->getFullUrl('/user/' . $usersRow->id . '-' . $usersRow->seoname), $usersRow->joined, 'monthly', 1);

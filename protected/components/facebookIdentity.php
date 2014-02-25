@@ -31,7 +31,7 @@ class facebookIdentity extends CBaseUserIdentity
 	 */
     public function authenticate( )
     {
-        $record=Members::model()->find('fbuid=:fbuid', array(':fbuid'=>$this->fbuid));
+        $record=Users::model()->find('fbuid=:fbuid', array(':fbuid'=>$this->fbuid));
         if($record===null)
 		{
             $this->errorCode=self::ERROR_UNKNOWN_IDENTITY;

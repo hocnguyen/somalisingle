@@ -32,7 +32,7 @@
 	<?php }
 	else
 	{
-		$my = Members::model()->findByPk(Yii::app()->user->id); ?>
+		$my = Users::model()->findByPk(Yii::app()->user->id); ?>
 		<a class="dropdown-toggle" data-toggle="dropdown" href="#">Hi, <?php echo $my->getDisplayName(); ?>!</a>
 		<ul class="dropdown-menu">
 			<?php if($my->vericode != '') : ?><li><?php echo CHtml::link(Yii::t('global', 'Verify email'), array('users/verify')); ?></li><?php endif; ?>

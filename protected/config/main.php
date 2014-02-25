@@ -54,7 +54,7 @@ return array(
     'layout' => 'main',
     'charset' => 'UTF-8',
     'sourceLanguage' => 'en',
-    'language' => 'es',
+    'language' => 'en',
     'params' => array(
         'fastcache' => $fastCache,
         'languages' => array('en' => 'English', 'es' => 'Spain'),

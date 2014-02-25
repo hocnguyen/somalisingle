@@ -60,7 +60,7 @@ class CustomWebUser extends CWebUser
 	 */
     private function getModel(){
         if (!$this->isGuest && $this->_model === null){
-            $this->_model = Members::model()->findByPk($this->id, array('select' => 'role'));
+            $this->_model = Users::model()->findByPk($this->id, array('select' => 'role'));
         }
         return $this->_model;
     }

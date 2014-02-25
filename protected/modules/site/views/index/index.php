@@ -1,4 +1,3 @@
-<?php $this->widget('widgets.admin.notifications'); ?>
 <div id="content" class="content-extra">
     <div class="container">
         <div class="row">

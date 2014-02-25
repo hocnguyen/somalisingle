@@ -13,7 +13,7 @@
  * @property string $vericode
  * @property string $username
  * @property integer $gender
- * @property integer $seeking
+ * @property string $seeking
  * @property string $birthday
  * @property integer $country_id
  * @property string $about_me
@@ -26,6 +26,7 @@
  * @property integer $drink
  * @property integer $education
  * @property integer $marital_status
+ * @property integer $status
  * @property string $living_current
  */
 class Users extends CActiveRecord
@@ -61,7 +62,7 @@ class Users extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('gender, seeking, country_id, ethnicity, height, body, eyes, hair, smoke, drink, education, marital_status', 'numerical', 'integerOnly'=>true),
+			array('gender, country_id, ethnicity, height, body, eyes, hair, smoke, drink, education, marital_status', 'numerical', 'integerOnly'=>true),
 			array('firstname, lastname, vericode, username, living_current', 'length', 'max'=>255),
 			array('email', 'length', 'max'=>155),
             array('email, username', 'unique' ),
@@ -105,16 +106,16 @@ class Users extends CActiveRecord
 			'birthday' => Yii::t('global', 'Birthday'),
 			'country_id' => Yii::t('global', 'Country'),
 			'about_me' => Yii::t('global', 'About Me'),
-			'ethnicity' => Yii::t('global', 'Ethnicity'),
-			'height' => Yii::t('global', 'Height'),
-			'body' => Yii::t('global', 'Body'),
-			'eyes' => Yii::t('global', 'Eyes'),
-			'hair' => Yii::t('global', 'Hair'),
-			'smoke' => Yii::t('global', 'Smoke'),
-			'drink' => Yii::t('global', 'Drink'),
-			'education' => Yii::t('global', 'Education'),
-			'marital_status' => Yii::t('global', 'Marital Status'),
-			'living_current' => Yii::t('global', 'Living Current'),
+			'ethnicity' => Yii::t('global', 'My ethnicity is'),
+			'height' => Yii::t('global', 'My height is'),
+			'body' => Yii::t('global', 'My Body type is'),
+			'eyes' => Yii::t('global', 'My eyes are'),
+			'hair' => Yii::t('global', 'My hair is'),
+			'smoke' => Yii::t('global', 'I smoke'),
+			'drink' => Yii::t('global', 'I drink'),
+			'education' => Yii::t('global', 'My education is'),
+			'marital_status' => Yii::t('global', 'My marital status is'),
+			' ' => Yii::t('global', 'I am currently living'),
 		);
 	}
 
@@ -163,5 +164,22 @@ class Users extends CActiveRecord
                 'condition'=>'username=:username',
                 'params'=>array(':username'=>$username))
         );
+    }
+
+    public function getFormatDate($date){
+        if($date<10)
+            return "0".$date;
+        return $date;
+    }
+    public function hashPassword( $password, $salt )
+    {
+        return sha1( md5('salt') . $password );
+    }
+
+    function checkRoleLogin($username){
+        $role = Users::model()->findByAttributes(array('username'=>$username));
+        if($role->role == 'guest')
+            return false;
+        return true;
     }
 }
