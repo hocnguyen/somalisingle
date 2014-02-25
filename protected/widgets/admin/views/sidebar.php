@@ -32,56 +32,95 @@ $this->widget('widgets.NBADMenu', array(
                                     	
                                     
                      ),
+                      // Members
+					 array( 
+							'label' => Yii::t('global', 'Members'), 
+							'url' => array('members'),
+							'icon' => 'isw-users',
+							'itemOptions' => array( 'class' => 'openable' ),
+							'items' => array(
+								array( 
+										'label' => Yii::t('global', 'Manage Members'), 
+										'url' => array('users/index'),
+                                        'icon' => 'icon-user'
+								 ),
+                                 array( 
+										'label' => Yii::t('global', 'Admin Accounts'), 
+										'url' => array('users/admins'),
+                                        'icon' => 'icon-user'
+								 ),
+                                 array( 
+										'label' => Yii::t('global', 'Who\'s Online'), 
+										'url' => array('users/admins'),
+                                        'icon' => 'icon-star-empty'
+								 ),
+							),
+						  ),
 
     				 // Members
 					 array( 
-							'label' => Yii::t('global', 'Dictionary'),
-							'url' => array('members'),
+							'label' => Yii::t('global', 'CMS'),
+							'url' => array('cms'),
 							'icon' => 'isw-list',
 							'itemOptions' => array( 'class' => 'openable' ),
 							'items' => array(
 								array( 
-										'label' => Yii::t('global', 'Manage Words'),
-										'url' => array('word/index'),
+										'label' => Yii::t('global', 'Blogs'),
+										'url' => array('blogpost/index'),
                                         'icon' => 'icon-book'
 								 ),
                                 array(
-                                    'label' => Yii::t('global', 'Manage Meaning'),
-                                    'url' => array('meaning/index'),
+                                    'label' => Yii::t('global', 'Custom Page'),
+                                    'url' => array('custompages/index'),
                                     'icon' => 'icon-list-alt'
                                 ),
-                                array(
-                                    'label' => Yii::t('global', 'Manage Definitions'),
-                                    'url' => array('definition/index'),
-                                    'icon' => ' icon-star-empty'
-                                ),
-                                array(
-                                    'label' => Yii::t('global', 'Manage Languages'),
-                                    'url' => array('languages/index'),
-                                    'icon' => 'icon-globe'
-                                ),
+                               // array(
+//                                    'label' => Yii::t('global', 'Manage Definitions'),
+//                                    'url' => array('definition/index'),
+//                                    'icon' => ' icon-star-empty'
+//                                ),
+//                                array(
+//                                    'label' => Yii::t('global', 'Manage Languages'),
+//                                    'url' => array('languages/index'),
+//                                    'icon' => 'icon-globe'
+//                                ),
 						  ),
                      ),
                    	 // Advertise
 					 array( 
-							'label' => Yii::t('global', 'Advertise & Social'),
-							'url' => array('banners'),
+							'label' => Yii::t('global', 'Datings'),
+							'url' => array('datings'),
 							'icon' => 'isw-ok',
 							'itemOptions' => array( 'class' => 'openable' ),
 							'items' => array(
 								array( 
-										'label' => Yii::t('global', 'Manage Advertise'),
+										'label' => Yii::t('global', 'Manage Save Search'),
 										'url' => array('banners/index'),
                                         'icon' => 'icon-file'
 								 ),
+                                 array( 
+										'label' => Yii::t('global', 'Manage Message'),
+										'url' => array('message/index'),
+                                        'icon' => 'icon-leaf'
+								 ),
+                                 array( 
+										'label' => Yii::t('global', 'Manage Photo'),
+										'url' => array('message/index'),
+                                        'icon' => 'icon-barcode'
+								 ),
+                                 array( 
+										'label' => Yii::t('global', 'Manage Rating'),
+										'url' => array('message/index'),
+                                        'icon' => 'icon-cog'
+								 ),
+                                  array( 
+										'label' => Yii::t('global', 'Manage Comment'),
+										'url' => array('message/index'),
+                                        'icon' => ' icon-tasks'
+								 ),
 						  ),
                      ),
-                    // Suggest
-                    array(
-                        'label' => Yii::t('global', 'Manage Suggest'),
-                        'url' => array('UserFeedback/index'),
-                        'icon' => 'isw-grid'
-                    ),
+                    
                      
     )
 ));
