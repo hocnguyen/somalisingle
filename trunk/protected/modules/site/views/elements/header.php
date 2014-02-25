@@ -17,7 +17,7 @@
 
                                 </div>-->
                             <?php } else { ?>
-                                <div class="login-link">Hi <a href=""><?php echo Yii::app()->user->username; ?></a> <a class="logout " href="/logout"><?php echo Yii::t('global','Logout') ?></a> </div>
+                                <div class="login-link">Hi <a href="/home"><?php echo Yii::app()->user->username; ?></a> <a class="logout " href="/logout"><?php echo Yii::t('global','Logout') ?></a> </div>
                             <?php } ?>
                         </div>
                         <h1 class="brand brand_"><a href="/"><img alt="" src="/themes/default/img/logo.png"> </a></h1>
