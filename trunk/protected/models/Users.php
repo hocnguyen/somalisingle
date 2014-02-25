@@ -70,6 +70,7 @@ class Users extends CActiveRecord
 			array('role', 'length', 'max'=>20),
 			array('birthday', 'length', 'max'=>200),
 			array('about_me', 'safe'),
+            array('email, username, password, role', 'required', 'on'=>'createadmin' ),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('id, firstname, lastname, email, password, role, vericode, username, gender, seeking, birthday, country_id, about_me, ethnicity, height, body, eyes, hair, smoke, drink, education, marital_status, living_current', 'safe', 'on'=>'search'),
