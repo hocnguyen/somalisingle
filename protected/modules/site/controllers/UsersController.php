@@ -235,7 +235,7 @@ class UsersController extends SiteBaseController {
                         Yii::app()->user->setFlash('success', Yii::t('global', 'Thanks. You are now logged in.'));
                         Yii::app()->user->login($identity, (Yii::app()->params['loggedInDays'] * 60 * 60 * 24 ));
                         if(Yii::app()->user->role == 'admin') $this->redirect('/admin');
-                        else $this->redirect('/user/profile');
+                        else $this->redirect('/home');
                     } else {
                         Yii::app()->user->setFlash('error', Yii::t('login', 'Please check your email to active account before login !'));
                     }
@@ -264,7 +264,8 @@ class UsersController extends SiteBaseController {
     }
     public function actionHome(){
         if(!Yii::app()->user->isGuest){
-
+            $model = Users::model()->findByPk(Yii::app()->user->id);
+            $this->render('index');
         } else {
             $this->redirect('/');
         }

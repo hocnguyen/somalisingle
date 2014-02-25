@@ -1421,3 +1421,33 @@ footer {
 .logout, .logout:hover {
     color: black;
 }
+
+.cover-photo {
+    margin: 15px auto;
+    border: 1px solid white;
+    border-radius: 5px;
+    color: white;
+    min-height: 150px;
+}
+.fix-span3 {
+    margin-left: 0px;
+}
+.fix-span1 {
+    margin: 5px;
+}
+.img-home {
+    width: 133px!important;
+}
+.cover-photo li {
+    margin: 10px 0 10px 30px!important;
+}
+.list-profile li{
+    list-style: none;
+}
+.list-profile li a:hover{
+    color: yellow;
+    text-decoration: none;
+}
+.list-profile li .text{
+    text-decoration: dotted;
+}

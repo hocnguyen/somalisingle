@@ -1,52 +1,74 @@
-<div class="page-header">
-    <h1><?php echo Yii::t('global', 'Manage'); ?> 
-    <small><?php echo Yii::t('global', 'Users'); ?></small></h1>
-</div>
+<div class=" container">
+    <!--<article>
+        <div class="cover-photo">
+            <img class="span1 fix-span1" src='/themes/default/img/1.jpg'/>
+            <img class="span1 fix-span1" src='/themes/default/img/2.jpg'/>
+            <img class="span1 fix-span1" src='/themes/default/img/3.jpg'/>
+            <img class="span1 fix-span1" src='/themes/default/img/4.jpg'/>
+            <img class="span1 fix-span1" src='/themes/default/img/5.jpg'/>
+            <img class="span1 fix-span1" src='/themes/default/img/7.jpg'/>
+            <img class="span1 fix-span1" src='/themes/default/img/8.jpg'/>
 
-<div class="row-fluid"><div class="span12">
-<div class="head clearfix">
-    <div class="isw-grid"></div>
-    <h1><?php echo Yii::t('global', 'Users'); ?></h1>      
-    <ul class="buttons">
-        <li><a class="isw-plus tipb" href="<?php echo $this->createUrl('users/create') ?>" data-original-title="<?php echo Yii::t('global', 'Create'); ?> <?php echo Yii::t('global', 'Users'); ?>"></a></li>
-    </ul>                        
-</div>
-<div class="block-fluid table-sorting">
+        </div>
+    </article>-->
+    <article >
+        <ul class="list-photo fix-position-photo cover-photo">
+            <li><a href="themes/default/img/image-blank.png" class="magnifier" ><img class="img-home" src="themes/default/img/1.jpg " alt="" /></a></li>
+            <li><a href="themes/default/img/image-blank.png" class="magnifier" ><img class="img-home"  src="themes/default/img/2.jpg " alt="" /></a></li>
+            <li><a href="themes/default/img/image-blank.png" class="magnifier" ><img class="img-home" src="themes/default/img/3.jpg " alt="" /></a></li>
+            <li class="last"><a href="themes/default/img/image-blank.png" class="magnifier" ><img class="img-home"  src="themes/default/img/4.jpg " alt="" /></a></li>
+            <li><a href="themes/default/img/image-blank.png" class="magnifier" ><img class="img-home"  src="themes/default/img/5.jpg " alt="" /></a></li>
+            <li><a href="themes/default/img/image-blank.png" class="magnifier" ><img class="img-home"  src="themes/default/img/1.jpg " alt="" /></a></li>
+            <li><a href="themes/default/img/image-blank.png" class="magnifier" ><img class="img-home"  src="themes/default/img/7.jpg " alt="" /></a></li>
 
-<?php $this->widget('zii.widgets.grid.CGridView', array(
-	'id'=>'users-grid',
-	'dataProvider'=>$model->search(),
-	'filter'=>$model,
-	'columns'=>array(
-		'id',
-		'firstname',
-		'lastname',
-		'email',
-		'password',
-		'role',
-		/*
-		'vericode',
-		'username',
-		'gender',
-		'seeking',
-		'birthday',
-		'country_id',
-		'about_me',
-		'ethnicity',
-		'height',
-		'body',
-		'eyes',
-		'hair',
-		'smoke',
-		'drink',
-		'education',
-		'marital_status',
-		'living_current',
-		*/
-		array(
-			'class'=>'CButtonColumn',
-		),
-	),
-)); ?>
+        </ul>
+    </article>
+    <div class="span3 fix-span3">
+        <div class="why_join">
+            <h5 class="title_whyjoin"><?php echo Yii::t('global','My Account') ?></h5>
+            <ul class="list-profile">
+                <li>
+                    <a href="">
+                        <span class="isw-settings"></span>
+                        <span class="text"><?php echo Yii::t('global','My Profile') ?></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="">
+                        <span class="isw-picture"></span>
+                        <span class="text"><?php echo Yii::t('global','My Photo') ?></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="">
+                        <span class="isw-text_document"></span>
+                        <span class="text"><?php echo Yii::t('global','My Blogs') ?></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="">
+                        <span class="isw-favorite"></span>
+                        <span class="text"><?php echo Yii::t('global','My Connections') ?></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="">
+                        <span class="isw-mail"></span>
+                        <span class="text"><?php echo Yii::t('global','My Messages') ?></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="">
+                        <span class="isw-mail"></span>
+                        <span class="text"><?php echo Yii::t('global','My Saved searchs') ?></span>
+                    </a>
+                </li>
+            </ul>
+
+        </div>
+
+    </div>
+    <div class="span8 fix-span7">
+
+    </div>
 </div>
-</div></div>

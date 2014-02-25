@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="/themes/default/css/style.css" type="text/css" media="screen">
     <link rel="stylesheet" href="/themes/default/css/touchTouch.css" type="text/css" media="screen">
     <link rel="stylesheet" href="/themes/default/css/kwicks-slider.css" type="text/css" media="screen">
+    <link rel="stylesheet" href="/themes/default/css/icons.css" type="text/css" media="screen">
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300' rel='stylesheet' type='text/css'>
     <script type="text/javascript" src="/themes/default/js/jquery.js"></script>
     <script type="text/javascript" src="/themes/default/js/superfish.js"></script>
