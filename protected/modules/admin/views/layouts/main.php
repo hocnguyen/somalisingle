@@ -92,7 +92,7 @@
     <div class="wrapper"> 
 
         <div class="header">
-            <a class="logo" href="<?php echo $this->createUrl('index/index', array('lang' => false)); ?>"><img style="height:37px;" src="<?php echo Yii::app()->themeManager->baseUrl; ?>/../../default/images/logo_ad.png" alt="Admin Panel" title="Admin Panel"/></a>
+            <a class="logo" href="<?php echo $this->createUrl('index/index', array('lang' => false)); ?>"><img style="height:37px;" src="<?php echo Yii::app()->themeManager->baseUrl; ?>/images/logo_ad.png" alt="Admin Panel" title="Admin Panel"/></a>
            <?php  $allLang = Languages::model()->findAll(); ?>
             <ul class="header_menu">
                 <li>
