@@ -38,5 +38,13 @@
         $datetimenew = ( $datetime =='01/01/1970 00:00:00' )? '':$datetime;
         return $datetimenew;
     }
+    function genCode($length = 5) {
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $randomString = '';
+        for ($i = 0; $i < $length; $i++) {
+            $randomString .= $characters[rand(0, strlen($characters) - 1)];
+        }
+        return $randomString;
+    }
 }
 	

@@ -109,7 +109,7 @@ class RolesController extends AdminBaseController {
 					AuthItemChild::model()->updateAll(array( 'parent' => $model->name ), 'parent=:name', array(':name'=>$old_name));
 					AuthItemChild::model()->updateAll(array( 'child' => $model->name ), 'child=:name', array(':name'=>$old_name));	
 					AuthAssignments::model()->updateAll(array( 'bizrule' => $model->bizrule, 'data' => $model->data,  'itemname' => $model->name ), 'itemname=:name', array(':name'=>$old_name));
-					Members::model()->updateAll(array('role'=>$model->name), 'role=:name', array(':name'=>$old_name));
+					Users::model()->updateAll(array('role'=>$model->name), 'role=:name', array(':name'=>$old_name));
 					
 					Yii::app()->user->setFlash('success', Yii::t('adminroles', 'Auth Item Updated.'));
 					$this->redirect(array('roles/index'));

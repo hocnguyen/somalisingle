@@ -12,7 +12,7 @@ class LoginForm extends CFormModel
 	/**
 	 * @var string - email
 	 */
-	public $email;
+	public $username;
 
 	/**
 	 * @var string - captcha
@@ -32,7 +32,7 @@ class LoginForm extends CFormModel
 	public function rules()
 	{
 		return array(
-			array('email, password', 'required'),
+			array('username, password', 'required'),
 			
 			//array('password', 'length', 'min' => 3, 'max' => 32),
 			//array('email', 'length', 'min' => 3, 'max' => 55),
@@ -47,7 +47,7 @@ class LoginForm extends CFormModel
 	 */
 	public function authenticate()
 	{
-		$identity = new InternalIdentity($this->email, $this->password);
+		$identity = new InternalIdentity($this->username, $this->password);
 		if($identity->authenticate())
 		{
 			// Member authenticated
@@ -67,7 +67,7 @@ class LoginForm extends CFormModel
 	public function attributeLabels()
 	{
 		return array(
-			'email' => Yii::t('members', 'Email'),
+			'username' => Yii::t('members', 'Username'),
 			'password' => Yii::t('members', 'Password'),
 			//'verifyCode' => Yii::t('members', 'Security Code'),
 		);

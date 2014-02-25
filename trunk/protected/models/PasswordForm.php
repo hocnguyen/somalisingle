@@ -29,7 +29,7 @@ class PasswordForm extends CFormModel
 			return false;
 		}
 		
-		$my = Members::model()->findByPk(Yii::app()->user->id);
+		$my = Users::model()->findByPk(Yii::app()->user->id);
 		if($my->hashPassword($this->password, '') != $my->password)
 		{
 			$this->addError('password', 'Invalid password');
