@@ -105,14 +105,49 @@ class UsersController extends SiteBaseController {
 	/**
 	 * Manages all models.
 	 */
-	public function actionAdmin()
+//	public function actionAdmin()
+//	{
+//		$dataProvider=new CActiveDataProvider('Users');
+//		$this->render('admin',array(
+//			'dataProvider'=>$dataProvider,
+//		));
+//	}
+    public function actionadmin()
 	{
-		$dataProvider=new CActiveDataProvider('Users');
-		$this->render('admin',array(
-			'dataProvider'=>$dataProvider,
-		));
+        if(Yii::app()->user->role == 'admin') $this->redirect('/admin');
+		$model = new LoginForm;
+		
+		if( isset($_POST['LoginForm']) )
+		{
+			$model->username   = $_POST['LoginForm']['email'];
+            $model->attributes = $_POST['LoginForm'];
+			if( $model->validate() )
+			{
+				
+                // Login
+				$identity = new InternalIdentity($model->username, $model->password);
+				if($identity->authenticate())
+				{
+					// Member authenticated, Login
+					Yii::app()->user->setFlash('success', Yii::t('login', 'Thanks. You are now logged in.'));
+					Yii::app()->user->login($identity, (Yii::app()->params['loggedInDays'] * 60 * 60 * 24 ));
+				}
+                else{
+                    Yii::app()->user->setFlash('error', $identity->errorMessage);
+                }
+				
+				// Redirect
+				if(Yii::app()->user->role == 'admin') $this->redirect('/admin');
+				else $this->redirect(Yii::app()->homeUrl);
+			}
+		}
+		
+		// Add page breadcrumb and title
+		$this->pageTitle[] = Yii::t('global', 'Login');
+		// $this->breadcrumbs[ Yii::t('global', 'Login') ] = '';
+		
+		$this->renderPartial('admin', array('model'=>$model));
 	}
-
 	/**
 	 * Returns the data model based on the primary key given in the GET variable.
 	 * If the data model is not found, an HTTP exception will be raised.
