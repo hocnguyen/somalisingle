@@ -116,7 +116,7 @@
     </div>
     <div class="modal-body">
         <p class="fix_content_modal">
-            <?php echo $terms->content;  ?>
+            <?php echo isset($terms->content)?$terms->content:'';  ?>
         </p>
     </div>
     <div class="modal-footer fix-footer-popup">
