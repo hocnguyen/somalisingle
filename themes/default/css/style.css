@@ -1076,6 +1076,10 @@ footer {
     position: relative;
     display: block;
   }
+  .fix-style-new{
+    color: red !important;
+    padding-left:15px;
+  }
   .nav-collapse_ .nav ul {
     position: relative;
     display: none;
