@@ -15,7 +15,7 @@
                     <?php echo $form->labelEx($model,'username'); ?>
                 </div>
                 <div class="span3">
-                    <?php echo $form->textField($model,'username',array('size'=>60,'maxlength'=>255,'class'=>'span3 validate[required]')); ?>
+                    <?php echo $form->textField($model,'username',array('size'=>60,'maxlength'=>255,'class'=>'span3 ')); ?>
                     <?php echo $form->error($model,'username'); ?>
                 </div>
             </div>
@@ -24,7 +24,7 @@
                     <?php echo $form->labelEx($model,'password'); ?>
                 </div>
                 <div class="span3">
-                    <?php echo $form->passwordField($model,'password',array('size'=>40,'maxlength'=>40,'class'=>'validate[required] span3')); ?>
+                    <?php echo $form->passwordField($model,'password',array('size'=>40,'maxlength'=>40,'class'=>' span3')); ?>
                     <?php echo $form->error($model,'password'); ?>
                 </div>
             </div>

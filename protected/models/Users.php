@@ -36,7 +36,7 @@ class Users extends CActiveRecord
 	 * @param string $className active record class name.
 	 * @return Users the static model class
 	 */
-    public $bday,$bmonth,$byear;
+    public $bday,$bmonth,$byear,$newpassword,$newpasswordagain;
 	public static function model($className=__CLASS__)
 	{
 		return parent::model($className);
@@ -116,7 +116,9 @@ class Users extends CActiveRecord
 			'drink' => Yii::t('global', 'I drink'),
 			'education' => Yii::t('global', 'My education is'),
 			'marital_status' => Yii::t('global', 'My marital status is'),
-			' ' => Yii::t('global', 'I am currently living'),
+			'living_current' => Yii::t('global', 'I am currently living'),
+			'newpassword' => Yii::t('global', 'New Password'),
+			'newpasswordagain' => Yii::t('global', 'New Password Again'),
 		);
 	}
 

@@ -78,7 +78,7 @@
                 </div>
             </article>
             <article class="span6">
-                <ul class="list-photo fix-position-photo">
+                <!--<ul class="list-photo fix-position-photo">
                     <li><a href="themes/default/img/image-blank.png" class="magnifier" ><img src="themes/default/img/1.jpg " alt="" /></a></li>
                     <li><a href="themes/default/img/image-blank.png" class="magnifier" ><img src="themes/default/img/2.jpg " alt="" /></a></li>
                     <li><a href="themes/default/img/image-blank.png" class="magnifier" ><img src="themes/default/img/3.jpg " alt="" /></a></li>
@@ -87,7 +87,8 @@
                     <li><a href="themes/default/img/image-blank.png" class="magnifier" ><img src="themes/default/img/1.jpg " alt="" /></a></li>
                     <li><a href="themes/default/img/image-blank.png" class="magnifier" ><img src="themes/default/img/7.jpg " alt="" /></a></li>
                     <li class="last"><a href="themes/default/img/image-blank.png" class="magnifier" ><img src="themes/default/img/8.jpg " alt="" /></a></li>
-              </ul>
+              </ul>-->
+                <img class="cover-photo-index" src="/themes/default/img/cover-photo.jpg"/>
             </article>
         </div>
     </div>
