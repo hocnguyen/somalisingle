@@ -25,10 +25,10 @@
                         <div class="nav-collapse nav-collapse_  collapse fix_navbar">
                             <ul class="nav sf-menu">
                                 <li class=<?php echo (Yii::app()->controller->action->id=='' || Yii::app()->controller->id=='users')?'active':'' ?>><a href="/home"><?php echo Yii::t('global','HOME') ?></a></li>
-                                <li class="sub-menu"><a href=""><?php echo Yii::t('global','SEARCH') ?></a></li>
+                                <li class="sub-menu <?php echo (Yii::app()->controller->id=='datingSearch')?'active':'' ?>"><a href="/search"><?php echo Yii::t('global','SEARCH') ?></a></li>
                                 <li class=<?php echo (Yii::app()->controller->id=='userPhotoGalleries')?'active':'' ?>><a href="/photos"><?php echo Yii::t('global','PHOTOS') ?></a></li>
                                 <li class="<?php echo (Yii::app()->controller->id=='blog')?'active':'' ?>"><a href="/blogs"><?php echo Yii::t('global','BLOGS')?></a></li>
-                                <li><a class="fix_menu" href=""><?php echo Yii::t('global','WHO\'S ONLINE') ?></a></li>
+                                <li class="<?php echo (Yii::app()->controller->id=='whoOnline')?'active':'' ?>"><a class="fix_menu" href="/online"><?php echo Yii::t('global','WHO\'S ONLINE') ?></a></li>
                             </ul>
                         </div>
 

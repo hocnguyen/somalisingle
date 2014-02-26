@@ -1,8 +1,8 @@
 <?php
 /**
- * Blog controller Home page
+ * WhoOnline controller Home page
  */
-class BlogController extends SiteBaseController {
+class WhoOnlineController extends SiteBaseController {
 	
 	const PAGE_SIZE = 20;
 	
@@ -14,8 +14,8 @@ class BlogController extends SiteBaseController {
         parent::init();
 
 		// Add page breadcrumb and title
-		$this->pageTitle[] = Yii::t('blog', 'Blog');
-		$this->breadcrumbs[ Yii::t('blog', 'Blog') ] = array('blog/index');
+		$this->pageTitle[] = Yii::t('blog', 'Who\'s Online');
+		$this->breadcrumbs[ Yii::t('blog', 'Blog') ] = array('whoOnline/index');
     }
 
 	/**
