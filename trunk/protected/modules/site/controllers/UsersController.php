@@ -297,12 +297,19 @@ class UsersController extends SiteBaseController {
         Yii::app()->user->setFlash('success', Yii::t('global', 'You are now logged out.'));
         $this->redirect(Yii::app()->homeUrl);
     }
+
     public function actionHome(){
         if(!Yii::app()->user->isGuest){
             $model = Users::model()->findByPk(Yii::app()->user->id);
-            $this->render('index');
+            $this->render('index',compact('model'));
         } else {
             $this->redirect('/');
         }
+    }
+
+    public function actionMySettings(){
+        $user = new Users();
+        $model =  new MySettings();
+        $this->render('my_settings',compact('model','user'));
     }
 }
