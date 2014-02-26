@@ -27,7 +27,7 @@
                                 <li class=<?php echo (Yii::app()->controller->action->id=='' || Yii::app()->controller->id=='users')?'active':'' ?>><a href="/home"><?php echo Yii::t('global','HOME') ?></a></li>
                                 <li class="sub-menu"><a href=""><?php echo Yii::t('global','SEARCH') ?></a></li>
                                 <li class=<?php echo (Yii::app()->controller->id=='userPhotoGalleries')?'active':'' ?>><a href="/photos"><?php echo Yii::t('global','PHOTOS') ?></a></li>
-                                <li><a href=""><?php echo Yii::t('global','BLOGS')?></a></li>
+                                <li class="<?php echo (Yii::app()->controller->id=='blog')?'active':'' ?>"><a href="/blogs"><?php echo Yii::t('global','BLOGS')?></a></li>
                                 <li><a class="fix_menu" href=""><?php echo Yii::t('global','WHO\'S ONLINE') ?></a></li>
                             </ul>
                         </div>
