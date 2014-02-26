@@ -61,7 +61,7 @@
                                 <div class="span1"></div>
                                 <div class="span4">
                                     <input class="span1"  name="termServices" type="checkbox"  id="checkterm"/>
-                                    <span class="lblterm"> <?php echo Yii::t('global',' I agree to Somalisingle {term_services}.',array('{term_services}'=> '<a href="">terms of services</a>'))?></span>
+                                    <span class="lblterm"> <?php echo Yii::t('global',' I agree to Somalisingle {term_services}.',array('{term_services}'=> '<a id="terms-of-service" href="#">terms of services</a>'))?></span>
 
                                 </div>
                                     <div class="noticeStatus" id="noticeStatus"></div>
@@ -101,7 +101,25 @@
             $('#noticeStatus').html('<?php echo Yii::t('global','Please check agree Somalisingle terms of services') ?>');
         }
 
-    })
+    });
+    
+    $('#terms-of-service').live('click',function(){
+         $('#myModal2').modal('show');
+    });
 
 
 </script>
+
+<div id="myModal2" class="modal hide fade purple-grid" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="title">
+        <h5 style="padding:5px 10px 5px 15px !important; border-bottom: 1px solid black; "><?php echo Yii::t('global', 'Terms of service')?> </h5>
+    </div>
+    <div class="modal-body">
+        <p class="fix_content_modal">
+            <?php echo $terms->content;  ?>
+        </p>
+    </div>
+    <div class="modal-footer fix-footer-popup">
+        <button type="button" class=" close" data-dismiss="modal" aria-hidden="true">×</button>
+    </div>
+</div>

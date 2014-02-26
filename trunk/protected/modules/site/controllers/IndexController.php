@@ -52,7 +52,8 @@ class IndexController extends SiteBaseController {
                     $this->redirect(array('users/registration','id'=>$model->id));
                 }
             }
-            $this->render('index', compact('model'));
+            $terms = CustomPages::model()->find('alias=:alias', array(':alias'=>'terms-of-service'));
+            $this->render('index', compact('model','terms'));
         } else {
             $this->redirect('/home');
         }
