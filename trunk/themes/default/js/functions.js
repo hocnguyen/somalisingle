@@ -27,3 +27,14 @@ jQuery(document).ready(function(){
 
     jQuery(".defaultText").blur();
 });
+
+function ratings( score, id, type ){
+    if ( type == '' ){type = 0;}
+    $.get('/users/saveRating?score='+score+'&id='+id+'&type='+type, function(html) {
+        if(html=="false"){
+            alert('You can\'t rating this photo.');
+        } else {
+            alert('Thanks for rating!');
+        }
+    });
+}

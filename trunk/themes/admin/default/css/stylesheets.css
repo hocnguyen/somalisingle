@@ -160,3 +160,7 @@ span.required{
     min-height: 5px !important; 
     width: 100%;
 }
+
+.view-settings ul.rows li .text {
+    margin-left: 376px!important;
+}
