@@ -1,12 +1,12 @@
 <?php
 
-class UsersController extends AdminBaseController {
+class MySettingsController extends AdminBaseController {
     public function init()
 	{
 		parent::init();
 		
-		$this->breadcrumbs[ Yii::t('global', 'Users') ] = array('users/index');
-		$this->pageTitle[] = Yii::t('global', 'Users');
+		$this->breadcrumbs[ Yii::t('global', 'My Settings') ] = array('mySettings/index');
+		$this->pageTitle[] = Yii::t('global', 'My Settings');
 	}
     
 	/**
@@ -26,14 +26,14 @@ class UsersController extends AdminBaseController {
 	 */
 	public function actionCreate()
 	{
-		$model=new Users;
+		$model=new MySettings;
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['Users']))
+		if(isset($_POST['MySettings']))
 		{
-			$model->attributes=$_POST['Users'];
+			$model->attributes=$_POST['MySettings'];
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
 		}
@@ -55,9 +55,9 @@ class UsersController extends AdminBaseController {
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['Users']))
+		if(isset($_POST['MySettings']))
 		{
-			$model->attributes=$_POST['Users'];
+			$model->attributes=$_POST['MySettings'];
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
 		}
@@ -92,39 +92,22 @@ class UsersController extends AdminBaseController {
 	 */
 	public function actionIndex()
 	{
-		$model=new Users('search');
+		$model=new MySettings('search');
 		$model->unsetAttributes();  // clear any default values
-        //$model->role = 'user';
-		if(isset($_GET['Users']))
-			$model->attributes=$_GET['Users'];
+		if(isset($_GET['MySettings']))
+			$model->attributes=$_GET['MySettings'];
 
 		$this->render('index',array(
 			'model'=>$model,
 		));
 	}
-    
-   	/**
-	 * Manages all models.
-	 */
-	public function actionAdmins()
-	{
-		$model=new Users('search');
-		$model->unsetAttributes();  // clear any default values
-        $model->role = 'admin';
-        if(isset($_GET['Users']))
-			$model->attributes=$_GET['Users'];
-	
-        $this->render('index',array(
-			'model'=>$model,'type'=>'admin'
-		));
-	}
-    
+
 	/**
 	 * Manages all models.
 	 */
 	public function actionAdmin()
 	{
-		$dataProvider=new CActiveDataProvider('Users');
+		$dataProvider=new CActiveDataProvider('MySettings');
 		$this->render('admin',array(
 			'dataProvider'=>$dataProvider,
 		));
@@ -137,39 +120,19 @@ class UsersController extends AdminBaseController {
 	 */
 	public function loadModel($id)
 	{
-		$model=Users::model()->findByPk((int)$id);
+		$model=MySettings::model()->findByPk((int)$id);
 		if($model===null)
 			throw new CHttpException(404,'The requested page does not exist.');
 		return $model;
 	}
-    
-    public function actionCreateAdmin()
-    {
-        $model=new Users('createadmin');
 
-        // Uncomment the following line if AJAX validation is needed
-        // $this->performAjaxValidation($model);
-
-        if(isset($_POST['Users']))
-        {
-            $model->attributes=$_POST['Users'];
-            $model->password = Users::model()->hashPassword($_POST['Users']['password'], '');
-            if($model->save())
-                $this->redirect(array('admin','type'=>'admin'));
-        }
-
-        $this->render('create_admin',array(
-            'model'=>$model,
-        ));
-    }
-    
 	/**
 	 * Performs the AJAX validation.
 	 * @param CModel the model to be validated
 	 */
 	protected function performAjaxValidation($model)
 	{
-		if(isset($_POST['ajax']) && $_POST['ajax']==='users-form')
+		if(isset($_POST['ajax']) && $_POST['ajax']==='my-settings-form')
 		{
 			echo CActiveForm::validate($model);
 			Yii::app()->end();

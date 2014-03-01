@@ -202,6 +202,7 @@ class UsersController extends SiteBaseController {
                 $model->seeking=$itemsSeeking;
                 $model->vericode = Users::model()->hashPassword(time(),$model->email);
                 $model->status = 0;
+                $model->about_me = $_POST['about_me'];
                 if($model->save()){
                     $homelink = '<a href="' . $this->createAbsoluteUrl('/') . '" target="_blank">' . Yii::app()->name . '</a>';
                     $actlink = $this->createAbsoluteUrl('/users/verify') . '?vericode='.$model->vericode;
@@ -271,6 +272,8 @@ class UsersController extends SiteBaseController {
                         Yii::app()->user->login($identity, (Yii::app()->params['loggedInDays'] * 60 * 60 * 24 ));
                         if(Yii::app()->user->role == 'admin') $this->redirect('/admin');
                         else $this->redirect('/home');
+                    } else  if(($check_role_login ==2)){
+                        Yii::app()->user->setFlash('error', Yii::t('login', 'Please check your new email to active account before login again !'));
                     } else {
                         Yii::app()->user->setFlash('error', Yii::t('login', 'Please check your email to active account before login !'));
                     }
@@ -301,15 +304,102 @@ class UsersController extends SiteBaseController {
     public function actionHome(){
         if(!Yii::app()->user->isGuest){
             $model = Users::model()->findByPk(Yii::app()->user->id);
-            $this->render('index',compact('model'));
+            $photo = UserPhotoGalleries::model()->findByAttributes(array('user_id'=>Yii::app()->user->id,'is_photo_main'=>1));
+            $criteria = new CDbCriteria();
+            $criteria->condition="user_id=".Yii::app()->user->id;
+            $criteria->limit = 5;
+            $allPhoto = UserPhotoGalleries::model()->findAll($criteria);
+            $this->render('index',compact('model','photo','allPhoto'));
         } else {
             $this->redirect('/');
         }
     }
 
     public function actionMySettings(){
-        $user = new Users();
-        $model =  new MySettings();
-        $this->render('my_settings',compact('model','user'));
+
+        if(!Yii::app()->user->isGuest){
+            $user = new Users();
+            $model =  MySettings::model()->findByAttributes(array('user_id'=>Yii::app()->user->id));
+            if(!$model){
+                $model =  new MySettings();
+            }
+
+            if(isset($_POST['Users']['newpassword'])) {
+                Users::model()->updateByPk(Yii::app()->user->id, array( 'password' => Users::model()->hashPassword($_POST['Users']['newpassword'], '') ));
+                // Redirect
+                Yii::app()->user->setFlash('success', Yii::t('global', 'Changed password.'));
+                $this->redirect('/users/mysettings');
+            }
+
+            if(isset($_POST['Users']['newemail'])){
+                $newEmail = Users::model()->updateByPk(Yii::app()->user->id, array( 'email' => $_POST['Users']['newemail']));
+                $homelink = '<a href="' . $this->createAbsoluteUrl('/') . '" target="_blank">' . Yii::app()->name . '</a>';
+                $email = EmailTemplates::model()->findByAttributes(array('alias'=>'change-email'));
+                $message = Yii::t('global', $email->email_content,array(
+                    '{username}' => $newEmail->firstname." ".$newEmail->lastname,
+                    '{team}'=>Yii::app()->name,
+                    '{homelink}' => $homelink));
+                $message .= Yii::t('global', '<br /><br />----------------<br />Regards,<br />The {team} Team.<br />', array('{team}'=>Yii::app()->name));
+                Utils::sendMail(Yii::app()->params['emailout'], $newEmail->email,  $email->email_subject, $message);
+                // Redirect
+                Yii::app()->user->setFlash('success', Yii::t('global', 'Changed email.'));
+                $this->redirect('/users/mysettings');
+            }
+
+            if(isset($_POST['MySettings'])){
+                $model->attributes=$_POST['MySettings'];
+                $model->user_id = Yii::app()->user->id;
+                $model->save();
+            }
+            $this->render('my_settings',compact('model','user'));
+        } else {
+            $this->redirect('/');
+        }
+    }
+    public function actionDeleteUser(){
+        $id = Yii::app()->user->id;
+        $this->loadModel($id)->delete();
+        Yii::app()->user->logout(true);
+
+    }
+
+    public function actionlostpassword()
+    {
+        $model =  new Users();
+        if(isset($_POST['User'])){
+            $email=$_POST['User']['email'];
+            $member = Users::model()->findByAttributes(array('email' => $email));
+            if($member){
+                $password = $member->generatePassword(5, 10);
+                $hashedPassword = $member->hashPassword( $password);
+                $message = Yii::t('global', "Dear {username},<br /><br />
+    									We have reseted your password successfully.<br /><br />
+    									You new password is: <b>{password}</b><br />",
+                    array( '{username}' => $member->firstname." ".$member->lastname, '{password}' => $password ));
+
+                $message .= Yii::t('global', '<br /><br />----------------<br />Regards,<br />The {team} Team.<br />', array('{team}'=>Yii::app()->name));
+                Utils::sendMail(Yii::app()->params['emailout'], $member->email, Yii::t('global', 'Password Reset Completed'), $message);
+
+                Users::model()->updateByPk($member->id, array('password'=>$hashedPassword));
+
+                Yii::app()->user->setFlash('success', Yii::t('global', 'Thank You. Your password was reset. Please check your email for you new generated password.'));
+
+            } else {
+                Yii::app()->user->setFlash('error', Yii::t('login', 'Not found this email. Please check again!'));
+            }
+        }
+        $this->render('loss-password',compact('model'));
+    }
+
+    public function actionSaveRating(){
+        $score      = intval( $_GET['score'] );
+        $photo_id = intval( $_GET['id'] );
+
+        $result = Ratings::model()->saveRating( $score, $photo_id);
+        if($result == false) {
+            echo 'false';
+        } else {echo 'true';}
+
+
     }
 }

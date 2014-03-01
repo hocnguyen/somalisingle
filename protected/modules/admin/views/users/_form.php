@@ -38,15 +38,7 @@
         </div>
 	</div>
 
-	<div class="row-form clearfix">
-		<div class="span3">
-            <?php echo $form->labelEx($model,'password'); ?>
-        </div>
-		<div class="span9">
-            <?php echo $form->passwordField($model,'password',array('size'=>40,'maxlength'=>40)); ?>
-            <?php echo $form->error($model,'password'); ?>
-        </div>
-	</div>
+
 
 	<div class="row-form clearfix">
 		<div class="span3">
@@ -58,22 +50,13 @@
         </div>
 	</div>
 
-	<div class="row-form clearfix">
-		<div class="span3">
-            <?php echo $form->labelEx($model,'vericode'); ?>
-        </div>
-		<div class="span9">
-            <?php echo $form->textField($model,'vericode',array('size'=>60,'maxlength'=>255)); ?>
-            <?php echo $form->error($model,'vericode'); ?>
-        </div>
-	</div>
 
 	<div class="row-form clearfix">
 		<div class="span3">
             <?php echo $form->labelEx($model,'username'); ?>
         </div>
 		<div class="span9">
-            <?php echo $form->textField($model,'username',array('size'=>60,'maxlength'=>255)); ?>
+            <?php echo $form->textField($model,'username',array('size'=>60,'maxlength'=>255,'readonly'=>'readonly')); ?>
             <?php echo $form->error($model,'username'); ?>
         </div>
 	</div>

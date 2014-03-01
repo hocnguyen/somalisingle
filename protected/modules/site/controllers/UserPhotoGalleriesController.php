@@ -96,9 +96,14 @@ class UserPhotoGalleriesController extends SiteBaseController {
 		$model->unsetAttributes();  // clear any default values
 		if(isset($_GET['UserPhotoGalleries']))
 			$model->attributes=$_GET['UserPhotoGalleries'];
-
+        $criteria = new CDbCriteria();
+        $criteria->condition=' is_private =0';
+        $criteria->limit = 5;
+        $criteria->order = 'created DESC';
+        $more_photo = UserPhotoGalleries::model()->findAll($criteria);
 		$this->render('index',array(
 			'model'=>$model,
+            'more_photo'=>$more_photo
 		));
 	}
 
@@ -141,14 +146,154 @@ class UserPhotoGalleriesController extends SiteBaseController {
 
     public function actionMorePhoto(){
 
-        $this->render('more_photo');
+        $criteria =  new CDbCriteria();
+        $criteria->condition=' is_private =0';
+        $criteria->order = 'created DESC';
+        $photos =  new CActiveDataProvider('UserPhotoGalleries',array(
+            'criteria'=>$criteria,
+        ));
+        $this->render('more_photo',compact('photos'));
     }
     public function actionPopularPhoto(){
+        $criteria =  new CDbCriteria();
+        $criteria->condition=' is_private =0';
+        $criteria->order = 'views DESC';
+        $photos =  new CActiveDataProvider('UserPhotoGalleries',array(
+            'criteria'=>$criteria,
 
-        $this->render('popular_photo');
+        ));
+        $this->render('popular_photo',compact('photos'));
     }
     public function actionDiscussPhoto(){
 
-        $this->render('discuss_photo');
+        $criteria =  new CDbCriteria();
+
+        $criteria->condition=' is_private =0';
+        //$criteria->order = 'commentPhoto DESC';
+        $photos =  new CActiveDataProvider('UserPhotoGalleries',array(
+            'criteria'=>$criteria,
+
+        ));
+        $this->render('discuss_photo',compact('photos'));
+    }
+
+    public function actionMyPhoto(){
+        if(!Yii::app()->user->isGuest){
+            $criteria = new CDbCriteria();
+            $criteria->condition = 'user_id = '.Yii::app()->user->id;
+            $myphoto =  new CActiveDataProvider('UserPhotoGalleries',array(
+                'criteria'=>$criteria,
+            ));
+            $this->render('my_photos',compact('myphoto'));
+        }
+    }
+
+    public function actionUploadPhoto(){
+        $model = new UserPhotoGalleries();
+        if(isset($_POST['UserPhotoGalleries'])){
+            $model->attributes=$_POST['UserPhotoGalleries'];
+            $uploadedFile=CUploadedFile::getInstance($model,'filename');
+            $model->user_id = Yii::app()->user->id;
+            if(!empty($uploadedFile)) {
+                $rnd = rand(0,9999);
+                $fileName = "{$rnd}-{$uploadedFile}";  // random number + file name
+                $model->filename = $fileName;
+            }
+            else{
+                $fileName = '';
+            }
+            $model->updated = date('Y-m-d H:i:s');
+            $model->created =  date('Y-m-d H:i:s');
+            if($model->is_photo_main ==1){
+                UserPhotoGalleries::model()->updateAll(array('is_photo_main'=>0));
+            }
+            if($model->save()){
+
+                if(!empty($uploadedFile)) {
+                    $uploadedFile->saveAs(Yii::app()->basePath.'/../uploads/photos/'.$fileName);
+                }
+                $this->redirect('myphoto');
+            }
+        }
+        $this->render('upload_photo',compact('model'));
+    }
+
+    public function actionUpdatePhoto(){
+        $id=$_GET['id'];
+        $model = UserPhotoGalleries::model()->findByPk($id);
+        $oldimages = $model->filename;
+        if(isset($_POST['UserPhotoGalleries'])){
+            $model->attributes=$_POST['UserPhotoGalleries'];
+            $uploadedFile=CUploadedFile::getInstance($model,'filename');
+            $model->user_id = Yii::app()->user->id;
+            if(!empty($uploadedFile)) {
+                $rnd = rand(0,9999);
+                $fileName = "{$rnd}-{$uploadedFile}";  // random number + file name
+                $model->filename = $fileName;
+            }
+            else{
+                $fileName = '';
+                $model->filename = $oldimages;
+            }
+            $model->updated = date('Y-m-d H:i:s');
+            $model->created =  date('Y-m-d H:i:s');
+            if($model->save()){
+                if(!empty($uploadedFile)) {
+                    $uploadedFile->saveAs(Yii::app()->basePath.'/../uploads/photos/'.$fileName);
+                }
+                $this->redirect('/myphoto');
+            }
+        }
+        $this->render('update_photo',compact('model'));
+
+    }
+
+    public function actionDeletePhoto(){
+        $id = $_GET['id'];
+        $this->loadModel($id)->delete();
+    }
+
+    public function actionPhotoMale(){
+        $criteria =  new CDbCriteria();
+        $criteria->with = 'user';
+        $criteria->condition=' is_private =0 AND user.gender = 1';
+        $criteria->order = 'views DESC';
+        $photos =  new CActiveDataProvider('UserPhotoGalleries',array(
+            'criteria'=>$criteria,
+
+        ));
+        $this->render('photos_male',compact('photos'));
+    }
+
+    public function actionPhotoFeMale(){
+        $criteria =  new CDbCriteria();
+        $criteria->with = 'user';
+        $criteria->condition=' is_private =0 AND user.gender = 0';
+        $criteria->order = 'views DESC';
+        $photos =  new CActiveDataProvider('UserPhotoGalleries',array(
+            'criteria'=>$criteria,
+
+        ));
+        $this->render('photos_female',compact('photos'));
+    }
+
+    public function actionDetailPhoto(){
+        $id = $_GET['id'];
+        $model = UserPhotoGalleries::model()->findByPk($id);
+        $comment = new PhotoComments();
+        $criteria = new CDbCriteria();
+        $criteria->condition = 'photo_id='.$id;
+        $allComment =  new CActiveDataProvider('PhotoComments', array(
+            'criteria'=>$criteria,
+        ));
+        if(isset($_POST['PhotoComments'])){
+            $comment->content = $_POST['PhotoComments']['content'];
+            $comment->photo_id = $id;
+            $comment->user_id= Yii::app()->user->id;
+            $comment->created =  date('Y-m-d H:i:s');
+            $comment->save();
+        }
+
+        $this->render('detail_photos',compact('model','comment','allComment'));
     }
 }

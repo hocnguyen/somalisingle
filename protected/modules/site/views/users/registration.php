@@ -49,6 +49,24 @@
                 </div>
                 <div class="row">
                     <div class="span2 fix-span2">
+                        <?php echo $form->labelEx($model,'firstname'); ?>
+                    </div>
+                    <div class="span5">
+                        <?php   echo $form->textField($model, 'firstname', array( 'class'=>'span5' )); ?>
+                        <?php echo $form->error($model,'firstname'); ?>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="span2 fix-span2">
+                        <?php echo $form->labelEx($model,'lastname'); ?>
+                    </div>
+                    <div class="span5">
+                        <?php   echo $form->textField($model, 'lastname', array( 'class'=>'span5' )); ?>
+                        <?php echo $form->error($model,'lastname'); ?>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="span2 fix-span2">
                         <?php echo $form->labelEx($model,'height'); ?>
                     </div>
                     <div class="span5">

@@ -23,9 +23,9 @@ $this->widget('widgets.NBADMenu', array(
 											'icon' => 'icon-wrench'
                                     ),
                                     array(
-                                        'label' => Yii::t('global', 'Manage Setting Languages'),
-                                        'url' => array('languages/setting'),
-                                        'icon' => 'icon-wrench'
+                                        'label' => Yii::t('global', 'Manage Countries'),
+                                        'url' => array('countries/index'),
+                                        'icon' => 'icon-book'
                                     ),
 
                             ),
@@ -44,9 +44,10 @@ $this->widget('widgets.NBADMenu', array(
 										'url' => array('users/index'),
                                         'icon' => 'icon-user'
 								 ),
-                                 array( 
-										'label' => Yii::t('global', 'Admin Accounts'), 
-										'url' => array('users/admins'),
+
+                                array(
+										'label' => Yii::t('global', 'Member Settings'),
+										'url' => array('mysettings/index'),
                                         'icon' => 'icon-user'
 								 ),
                                  array( 

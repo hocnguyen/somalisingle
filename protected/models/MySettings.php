@@ -22,6 +22,7 @@ class MySettings extends CActiveRecord
 	 * @param string $className active record class name.
 	 * @return MySettings the static model class
 	 */
+    public $username,$lastname,$firstname;
 	public static function model($className=__CLASS__)
 	{
 		return parent::model($className);
@@ -51,7 +52,7 @@ class MySettings extends CActiveRecord
 			array('date_format, date_time_format', 'length', 'max'=>255),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, date_format, date_time_format, search_match, allow_rate_photo, email_notification, allow_comment, timezone_id, receive_newsletter, user_id', 'safe', 'on'=>'search'),
+			array('id, date_format, date_time_format, search_match, allow_rate_photo, email_notification, allow_comment, timezone_id, receive_newsletter, user_id,username,firstname,lastname', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -63,6 +64,7 @@ class MySettings extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+            'user' => array(self::BELONGS_TO, 'Users', 'user_id'),
 		);
 	}
 
@@ -71,18 +73,18 @@ class MySettings extends CActiveRecord
 	 */
 	public function attributeLabels()
 	{
-		return array(
-			'id' => Yii::t('global', 'ID'),
-			'date_format' => Yii::t('global', 'Default date format'),
-			'date_time_format' => Yii::t('global', 'Date and time format'),
-			'search_match' => Yii::t('global', 'How often do you want to receive your search matches? (days)'),
-			'allow_rate_photo' => Yii::t('global', 'Allow my photos to be rated?'),
-			'email_notification' => Yii::t('global', 'Send me email notifications when I receive messages?'),
-			'allow_comment' => Yii::t('global', 'Allow comments on my profile?'),
-			'timezone_id' => Yii::t('global', 'Select your timezone '),
-			'receive_newsletter' => Yii::t('global', 'I want to receive occasional newsletters'),
-			'user_id' => Yii::t('global', 'User'),
-		);
+        return array(
+            'id' => Yii::t('global', 'ID'),
+            'date_format' => Yii::t('global', 'Default date format'),
+            'date_time_format' => Yii::t('global', 'Date and time format'),
+            'search_match' => Yii::t('global', 'How often do you want to receive your search matches? (days)'),
+            'allow_rate_photo' => Yii::t('global', 'Allow my photos to be rated?'),
+            'email_notification' => Yii::t('global', 'Send me email notifications when I receive messages?'),
+            'allow_comment' => Yii::t('global', 'Allow comments on my profile?'),
+            'timezone_id' => Yii::t('global', 'Select your timezone '),
+            'receive_newsletter' => Yii::t('global', 'I want to receive occasional newsletters'),
+            'user_id' => Yii::t('global', 'User'),
+        );
 	}
 
 	/**
@@ -95,7 +97,7 @@ class MySettings extends CActiveRecord
 		// should not be searched.
 
 		$criteria=new CDbCriteria;
-
+        $criteria->with = 'user';
 		$criteria->compare('id',$this->id);
 		$criteria->compare('date_format',$this->date_format,true);
 		$criteria->compare('date_time_format',$this->date_time_format,true);
@@ -106,9 +108,43 @@ class MySettings extends CActiveRecord
 		$criteria->compare('timezone_id',$this->timezone_id);
 		$criteria->compare('receive_newsletter',$this->receive_newsletter);
 		$criteria->compare('user_id',$this->user_id);
+		$criteria->compare('user.username',$this->username);
+		$criteria->compare('user.firstname',$this->firstname);
+		$criteria->compare('user.lastname',$this->lastname);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
+            'sort'=>array(
+                'attributes'=>array(
+                    'username'=>array(
+                        'asc'=>'user.username',
+                        'desc'=>'user.username DESC',
+                    ),
+                    'firstname'=>array(
+                        'asc'=>'user.firstname',
+                        'desc'=>'user.firstname DESC',
+                    ),
+                    'lastname'=>array(
+                        'asc'=>'user.lastname',
+                        'desc'=>'user.lastname DESC',
+                    ),
+
+                    '*',
+                ),
+            ),
 		));
 	}
+
+    public function getStatus($status){
+        if($status==0)
+            return Yii::t('global','No');
+        return Yii::t('global','Yes');
+    }
+
+    public function getTimezone($timezone){
+        if(isset($timezone)){
+            $cr_timezone = TimeZone::model()->findByPk($timezone);
+            return $cr_timezone->name;
+        }
+    }
 }
