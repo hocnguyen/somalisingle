@@ -6,13 +6,13 @@
             <ul class="list-profile">
 
                 <li>
-                    <a href="">
+                    <a href="/photofemale">
                         <span class="isb-zoom"></span>
                         <span class="text"><?php echo Yii::t('global','Photos of Females') ?></span>
                     </a>
                 </li>
                 <li>
-                    <a href="">
+                    <a href="/photoMale">
                         <span class="isb-zoom"></span>
                         <span class="text"><?php echo Yii::t('global','Photos of Males') ?></span>
                     </a>
@@ -27,25 +27,15 @@
                 <h5 class="title_whyjoin"><?php echo Yii::t('global','Newest Photos') ?></h5>
                 <div class="see-more"><a href="/morephotos" ><?php echo Yii::t('global','See more') ?></a> </div>
                 <ul class="list-photo fix-position-photo cover-photo">
-                    <li><a href="themes/default/img/image-blank.png" class="magnifier" ><img class="img-home" src="themes/default/img/1.jpg " alt="" /></a></li>
-                    <li><a href="themes/default/img/image-blank.png" class="magnifier" ><img class="img-home"  src="themes/default/img/2.jpg " alt="" /></a></li>
-                    <li><a href="themes/default/img/image-blank.png" class="magnifier" ><img class="img-home" src="themes/default/img/3.jpg " alt="" /></a></li>
-                    <li class="last"><a href="themes/default/img/image-blank.png" class="magnifier" ><img class="img-home"  src="themes/default/img/4.jpg " alt="" /></a></li>
-                    <li><a href="themes/default/img/image-blank.png" class="magnifier" ><img class="img-home"  src="themes/default/img/5.jpg " alt="" /></a></li>
+                    <?php if(isset($more_photo)) {
+                        foreach($more_photo as $item){ ?>
+                            <li><a href="/detailPhoto/<?php echo $item->id ?>" class="magnifier" ><img class="img-home" src="/uploads/photos/<?php echo $item->filename ?>" alt="" /></a></li>
+                        <?php    }
+                    } ?>
 
                 </ul>
             </div>
-            <div class="photo-newest">
-                <h5 class="title_whyjoin"><?php echo Yii::t('global','Most Discussed Photos') ?></h5>
-                <div class="see-more"><a href="/morephotos" ><?php echo Yii::t('global','See more') ?></a> </div>
-                <ul class="list-photo fix-position-photo cover-photo">
-                    <li><a href="themes/default/img/image-blank.png" class="magnifier" ><img class="img-home" src="themes/default/img/1.jpg " alt="" /></a></li>
-                    <li><a href="themes/default/img/image-blank.png" class="magnifier" ><img class="img-home"  src="themes/default/img/2.jpg " alt="" /></a></li>
-                    <li><a href="themes/default/img/image-blank.png" class="magnifier" ><img class="img-home" src="themes/default/img/3.jpg " alt="" /></a></li>
-                    <li class="last"><a href="themes/default/img/image-blank.png" class="magnifier" ><img class="img-home"  src="themes/default/img/4.jpg " alt="" /></a></li>
-                    <li><a href="themes/default/img/image-blank.png" class="magnifier" ><img class="img-home"  src="themes/default/img/5.jpg " alt="" /></a></li>
-                </ul>
-            </div>
+
         </div>
     </div>
 </div>

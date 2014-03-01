@@ -38,6 +38,7 @@
         $datetimenew = ( $datetime =='01/01/1970 00:00:00' )? '':$datetime;
         return $datetimenew;
     }
+
     function genCode($length = 5) {
         $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
         $randomString = '';
@@ -45,6 +46,10 @@
             $randomString .= $characters[rand(0, strlen($characters) - 1)];
         }
         return $randomString;
+    }
+
+    function getDayFormat($value){
+        return date('Y-m-d',strtotime($value));
     }
 }
 	

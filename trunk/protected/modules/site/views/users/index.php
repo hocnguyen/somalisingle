@@ -1,17 +1,4 @@
 <div class=" container">
-    <!--<article>
-        <div class="cover-photo">
-            <img class="span1 fix-span1" src='/themes/default/img/1.jpg'/>
-            <img class="span1 fix-span1" src='/themes/default/img/2.jpg'/>
-            <img class="span1 fix-span1" src='/themes/default/img/3.jpg'/>
-            <img class="span1 fix-span1" src='/themes/default/img/4.jpg'/>
-            <img class="span1 fix-span1" src='/themes/default/img/5.jpg'/>
-            <img class="span1 fix-span1" src='/themes/default/img/7.jpg'/>
-            <img class="span1 fix-span1" src='/themes/default/img/8.jpg'/>
-
-        </div>
-    </article>-->
-
     <div class="span3 fix-span3">
         <div class="why_join">
             <h5 class="title_whyjoin"><?php echo Yii::t('global','My Account') ?></h5>
@@ -23,7 +10,7 @@
             <h5 class="title_whyjoin"><?php echo Yii::t('global','My Home') ?></h5>
            <div class="row row-form">
                <div class="span2 avatar-wrapper">
-                   <img src="/themes/default/img/1.jpg" class="avatar"/>
+                   <img src="/uploads/photos/<?php echo $photo->filename ?>" class="avatar"/>
                    <a href="" class="request-friend"><?php echo Yii::t('global','Friendship Requests')?></a>
                </div>
                <div class="span7 fix-span7-home">
@@ -39,12 +26,11 @@
             <div class="photo-newest">
                 <h5 class="title_whyjoin"><?php echo Yii::t('global','Newest Photo') ?></h5>
                 <ul class="list-photo fix-position-photo cover-photo">
-                    <li><a href="themes/default/img/image-blank.png" class="magnifier" ><img class="img-home" src="themes/default/img/1.jpg " alt="" /></a></li>
-                    <li><a href="themes/default/img/image-blank.png" class="magnifier" ><img class="img-home"  src="themes/default/img/2.jpg " alt="" /></a></li>
-                    <li><a href="themes/default/img/image-blank.png" class="magnifier" ><img class="img-home" src="themes/default/img/3.jpg " alt="" /></a></li>
-                    <li class="last"><a href="themes/default/img/image-blank.png" class="magnifier" ><img class="img-home"  src="themes/default/img/4.jpg " alt="" /></a></li>
-                    <li><a href="themes/default/img/image-blank.png" class="magnifier" ><img class="img-home"  src="themes/default/img/5.jpg " alt="" /></a></li>
-
+                    <?php if(isset($allPhoto)) {
+                        foreach($allPhoto as $item){ ?>
+                            <li><a href="/detailPhoto/<?php echo $item->id ?>" class="wrapper-img" ><img class="img-home" src="/uploads/photos/<?php echo $item->filename ?>" alt="" /></a></li>
+                        <?php    }
+                    } ?>
                 </ul>
             </div>
         </div>

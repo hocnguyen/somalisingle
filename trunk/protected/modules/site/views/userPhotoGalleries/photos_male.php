@@ -8,7 +8,7 @@
     <div class="span9 fix-span7">
         <div class="general-photo">
             <div class="photo-newest">
-                <h5 class="title_whyjoin"><?php echo Yii::t('global','Newest Photos') ?></h5>
+                <h5 class="title_whyjoin"><?php echo Yii::t('global','Photos Male') ?></h5>
                 <?php $this->widget('zii.widgets.CListView', array(
                     'dataProvider'=>$photos,
                     'ajaxUpdate'=>false,

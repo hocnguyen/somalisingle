@@ -12,8 +12,8 @@
                             <div class="row fix_height-row">
                                 <div class="span1"><?php echo Yii::t('global','I am') ?> </div>
                                 <div class="span3">
-                                    <input class="gender validate[required]" type="radio" name="gender" id="male"/><label class="lbl_gender" for="male"><?php echo Yii::t('global','Male') ?> </label>
-                                    <input class="gender validate[required]" type="radio" name="gender" id="female"/><label class="lbl_gender" for="female"><?php echo Yii::t('global','Female') ?> </label>
+                                    <input class="gender validate[required]" value="1" type="radio" name="Users[gender]" id="male"/><label class="lbl_gender" for="male"><?php echo Yii::t('global','Male') ?> </label>
+                                    <input class="gender validate[required]" value="0" type="radio" name="Users[gender]" id="female"/><label class="lbl_gender" for="female"><?php echo Yii::t('global','Female') ?> </label>
                                 </div>
                             </div>
                             <div class="row fix_height-row">

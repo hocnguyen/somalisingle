@@ -46,7 +46,7 @@ class UserPhotoGalleries extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('filename, created, updated', 'required'),
+			//array('created, updated', 'required'),
 			array('user_id, is_private, is_comment, is_photo_main', 'numerical', 'integerOnly'=>true),
 			array('filename', 'length', 'max'=>255),
 			array('description', 'safe'),
@@ -64,6 +64,8 @@ class UserPhotoGalleries extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+            'user' => array(self::BELONGS_TO, 'Users', 'user_id'),
+            'commentPhoto'=>array(self::STAT,'PhotoComments','photo_id'),
 		);
 	}
 
@@ -77,9 +79,9 @@ class UserPhotoGalleries extends CActiveRecord
 			'user_id' => Yii::t('global', 'User'),
 			'filename' => Yii::t('global', 'Filename'),
 			'description' => Yii::t('global', 'Description'),
-			'is_private' => Yii::t('global', 'Is Private'),
-			'is_comment' => Yii::t('global', 'Is Comment'),
-			'is_photo_main' => Yii::t('global', 'Is Photo Main'),
+			'is_private' => Yii::t('global', 'Private photo?'),
+			'is_comment' => Yii::t('global', 'Allow comments on photo?'),
+			'is_photo_main' => Yii::t('global', 'Main profile photo?'),
 			'created' => Yii::t('global', 'Created'),
 			'updated' => Yii::t('global', 'Updated'),
 		);
@@ -110,4 +112,28 @@ class UserPhotoGalleries extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+
+    function showImage(){
+        return '<a class="fancybox" href="/uploads/product_gallery/'.$this->filename.'" rel="group">
+            <img class="img-polaroid" src="/uploads/product_gallery/'.$this->filename.'" style="height: 50px;" />
+            </a>';
+    }
+
+    public function beforeSave(){
+        //$this->created = date('Y-m-d H:i:s');
+        //$this->updated = date('Y-m-d H:i:s');
+        return parent::beforeSave();
+    }
+
+    public function getStatusPhoto($status){
+        if($status ==1)
+            return Yii::t('global','Private');
+        return Yii::t('global','Public');
+    }
+
+    public function getAvatar($user_id){
+        $photo = UserPhotoGalleries::model()->findByAttributes(array('user_id'=>$user_id,'is_photo_main'=>1));
+        return $photo->filename ;
+    }
+
 }

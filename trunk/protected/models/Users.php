@@ -36,7 +36,7 @@ class Users extends CActiveRecord
 	 * @param string $className active record class name.
 	 * @return Users the static model class
 	 */
-    public $bday,$bmonth,$byear,$newpassword,$newpasswordagain;
+    public $bday,$bmonth,$byear,$newpassword,$newpasswordagain, $newemail, $newemailagain;
 	public static function model($className=__CLASS__)
 	{
 		return parent::model($className);
@@ -65,7 +65,7 @@ class Users extends CActiveRecord
 			array('gender, country_id, ethnicity, height, body, eyes, hair, smoke, drink, education, marital_status', 'numerical', 'integerOnly'=>true),
 			array('firstname, lastname, vericode, username, living_current', 'length', 'max'=>255),
 			array('email', 'length', 'max'=>155),
-            array('email, username', 'unique' ),
+            array('email,newemail, username', 'unique' ),
 			array('password', 'length', 'max'=>40),
 			array('role', 'length', 'max'=>20),
 			array('birthday', 'length', 'max'=>200),
@@ -85,6 +85,7 @@ class Users extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+            'mySettings' => array(self::HAS_ONE, 'MySettings', 'user_id'),
 		);
 	}
 
@@ -119,6 +120,8 @@ class Users extends CActiveRecord
 			'living_current' => Yii::t('global', 'I am currently living'),
 			'newpassword' => Yii::t('global', 'New Password'),
 			'newpasswordagain' => Yii::t('global', 'New Password Again'),
+			'newemail' => Yii::t('global', 'New Email'),
+			'newemailagain' => Yii::t('global', 'New Email Again'),
 		);
 	}
 
@@ -184,5 +187,23 @@ class Users extends CActiveRecord
         if($role->role == 'guest')
             return false;
         return true;
+    }
+
+    public function generatePassword($minLength=5, $maxLength=10)
+    {
+        $length=rand($minLength,$maxLength);
+
+        $letters='bcdfghjklmnpqrstvwxyz';
+        $vowels='aeiou';
+        $code='';
+        for($i=0;$i<$length;++$i)
+        {
+            if($i%2 && rand(0,10)>2 || !($i%2) && rand(0,10)>9)
+                $code.=$vowels[rand(0,4)];
+            else
+                $code.=$letters[rand(0,20)];
+        }
+
+        return $code;
     }
 }

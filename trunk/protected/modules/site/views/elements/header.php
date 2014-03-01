@@ -6,7 +6,8 @@
                     <div class="container">
                         <div class="login">
                             <?php if(Yii::app()->user->isGuest){ ?>
-                                <a href="/login" class="login-link">Login</a>
+                                <a href="/forgetpassword" class="login-link"><?php echo Yii::t('global','Forget password') ?></a>
+                                <a href="/login" class="login-link"><?php echo Yii::t('global','Login') ?></a>
                                 <!--<div class="form-login">
                                     <?php /*echo CHtml::form($this->createUrl('users/login'), 'post', array('class'=>'frmcontact', 'id'=>'login-form')); */?>
                                     <div class="close-login">X</div>

@@ -6,7 +6,7 @@
         </a>
     </li>
     <li>
-        <a href="">
+        <a href="/myphoto">
             <span class="isb-picture"></span>
             <span class="text"><?php echo Yii::t('global','My Photo') ?></span>
         </a>
