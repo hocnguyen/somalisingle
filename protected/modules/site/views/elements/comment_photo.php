@@ -7,7 +7,7 @@
             <?php //if() ?>
         </div>
         <div class="span5 fix-span3">
-            <?php echo $data->content?>
+            <?php echo $data->content ?>
         </div>
     </div>
 </div>

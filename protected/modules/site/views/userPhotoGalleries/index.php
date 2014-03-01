@@ -29,7 +29,7 @@
                 <ul class="list-photo fix-position-photo cover-photo">
                     <?php if(isset($more_photo)) {
                         foreach($more_photo as $item){ ?>
-                            <li><a href="/detailPhoto/<?php echo $item->id ?>" class="magnifier" ><img class="img-home" src="/uploads/photos/<?php echo $item->filename ?>" alt="" /></a></li>
+                            <li><a href="/detailPhoto/<?php echo $item->id ?>" class="wrapper-img" ><img class="img-home" src="/uploads/photos/<?php echo $item->filename ?>" alt="" /></a></li>
                         <?php    }
                     } ?>
 

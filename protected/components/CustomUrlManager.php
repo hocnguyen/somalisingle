@@ -42,6 +42,7 @@ class CustomUrlManager extends CUrlManager {
 				"/"                 => 'site/index/index',
 				"/login"            => 'site/users/login',
 				"/home"             => 'site/users/home',
+				"/myprofile"             => 'site/users/MyProfile',
 				"/photos"           => 'site/userPhotoGalleries/index',
 				"/myphoto"           => 'site/userPhotoGalleries/myPhoto',
 				"/morephotos"       => 'site/userPhotoGalleries/morePhoto',

@@ -44,9 +44,10 @@
                 <?php } ?>
                 <div class="row">
                     <div class="span2 fix-span2-left">
-                        <?php echo Yii::t('global','Leave your comment') ?>
+
                     </div>
                     <div class="span5 fix-img-detail">
+                        <b><?php echo Yii::t('global','Leave your comment') ?> </b>
                         <?php $form=$this->beginWidget('CActiveForm', array(
                             'id'=>'user-photo-galleries-form',
                             'enableAjaxValidation'=>false,

@@ -1,6 +1,6 @@
 <ul class="list-profile">
     <li>
-        <a href="">
+        <a href="/myprofile">
             <span class="isb-user"></span>
             <span class="text"><?php echo Yii::t('global','My Profile') ?></span>
         </a>
