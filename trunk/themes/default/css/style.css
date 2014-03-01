@@ -160,6 +160,18 @@ header {
 .sub-menu > a {
   position: relative;
 }
+.search-blogs{
+    margin: 25px 15px 15px 20px;
+}
+.btn-success{
+    margin-top: -10px !important;
+}
+.login-or-register{
+    margin: 15px 15px 15px 20px;
+}
+.login-or-register a{
+    color:red;
+}
 .nav-collapse_ .nav ul {
   position: absolute;
   display: none;
