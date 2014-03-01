@@ -27,6 +27,7 @@
  * @property integer $education
  * @property integer $marital_status
  * @property integer $status
+ * @property integer $status_online
  * @property string $living_current
  */
 class Users extends CActiveRecord
@@ -205,5 +206,42 @@ class Users extends CActiveRecord
         }
 
         return $code;
+    }
+    public function getGender($gender){
+        if($gender ==1)
+            return Yii::t('global','Male');
+        return Yii::t('global','Female');
+    }
+    public function getAge($gender){
+        $age = date('Y') - date('Y',strtotime($gender));
+        return $age;
+    }
+    public function getCountry($country){
+        $result = Countries::model()->findByPk($country);
+        return $result->short_name;
+    }
+    public function getCurentLiving($curent){
+        $result = explode(',',$curent);
+        $results = '';
+        foreach($result as $item){
+            if($item !=''){
+                $lookup = Lookup::model()->findByAttributes(array('type'=>'currentliving','code'=>$item));
+                $results .=$lookup->name.', ';
+            }
+
+        }
+        return $results;
+    }
+    public function getSeeking($seeking){
+        $result = explode(',',$seeking);
+        $seekings = '';
+        foreach($result as $item){
+            if($item == 1){
+               $seekings.='Female,';
+            } else{
+                $seekings.='Male,';
+            }
+        }
+        return $seekings;
     }
 }

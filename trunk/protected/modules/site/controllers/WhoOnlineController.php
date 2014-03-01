@@ -22,7 +22,13 @@ class WhoOnlineController extends SiteBaseController {
 	 * Index action
 	 */
     public function actionIndex() {
-        $this->render('index');
+
+        $criteria = new CDbCriteria();
+        $criteria->condition = "status_online = 1";
+        $userOnline = new CActiveDataProvider('Users',array(
+           'criteria'=>$criteria
+        ));
+        $this->render('index',compact('userOnline'));
     }
 
 

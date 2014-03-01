@@ -270,6 +270,7 @@ class UsersController extends SiteBaseController {
                         // Member authenticated, Login
                         Yii::app()->user->setFlash('success', Yii::t('global', 'Thanks. You are now logged in.'));
                         Yii::app()->user->login($identity, (Yii::app()->params['loggedInDays'] * 60 * 60 * 24 ));
+                        Users::model()->updateByPk(Yii::app()->user->id,array('status_online'=>1));
                         if(Yii::app()->user->role == 'admin') $this->redirect('/admin');
                         else $this->redirect('/home');
                     } else  if(($check_role_login ==2)){
@@ -296,6 +297,7 @@ class UsersController extends SiteBaseController {
         {
             $this->redirect(Yii::app()->homeUrl);
         }
+        Users::model()->updateByPk(Yii::app()->user->id,array('status_online'=>0));
         Yii::app()->user->logout(true);
         Yii::app()->user->setFlash('success', Yii::t('global', 'You are now logged out.'));
         $this->redirect(Yii::app()->homeUrl);
@@ -399,7 +401,21 @@ class UsersController extends SiteBaseController {
         if($result == false) {
             echo 'false';
         } else {echo 'true';}
+    }
 
+    public function actionMyProfile(){
+        if(!Yii::app()->user->isGuest){
+            $model = Users::model()->findByPk(Yii::app()->user->id);
+            $photo = UserPhotoGalleries::model()->findByAttributes(array('user_id'=>Yii::app()->user->id,'is_photo_main'=>1));
+            $criteria = new CDbCriteria();
+            $criteria->condition="user_id=".Yii::app()->user->id;
+            $criteria->limit = 3;
+            $allPhoto = UserPhotoGalleries::model()->findAll($criteria);
+            $this->render('my_profile',compact('model','photo','allPhoto'));
+        } else {
+            $this->redirect('/');
+        }
 
     }
+
 }

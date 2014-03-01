@@ -29,10 +29,9 @@
                                 <li class="sub-menu <?php echo (Yii::app()->controller->id=='datingSearch')?'active':'' ?>"><a href="/search"><?php echo Yii::t('global','SEARCH') ?></a></li>
                                 <li class=<?php echo (Yii::app()->controller->id=='userPhotoGalleries')?'active':'' ?>><a href="/photos"><?php echo Yii::t('global','PHOTOS') ?></a></li>
                                 <li class="<?php echo (Yii::app()->controller->id=='blog')?'active':'' ?>"><a href="/blogs"><?php echo Yii::t('global','BLOGS')?></a></li>
-                                <li class="<?php echo (Yii::app()->controller->id=='whoOnline')?'active':'' ?>"><a class="fix_menu" href="/online"><?php echo Yii::t('global','WHO\'S ONLINE') ?></a></li>
+                                <li class="<?php echo (Yii::app()->controller->id=='whoOnline')?'active':'' ?>"><a class="fix_menu" href="/whoOnline"><?php echo Yii::t('global','WHO\'S ONLINE') ?></a></li>
                             </ul>
                         </div>
-
                     </div>
                 </div>
             </div>

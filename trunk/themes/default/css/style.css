@@ -1325,7 +1325,7 @@ footer {
 }
 
 .fix_btn_submit {
-    margin-top: 10px;
+    margin-top: 10px!important;
 }
 .noticeStatus {
     float: left;
@@ -1548,6 +1548,7 @@ footer {
     background-color: white;
 }
 .fix-btn-change {
+    margin-top: 10px!important;
     margin-left: 30px;
 }
 .text-email {
@@ -1579,4 +1580,27 @@ footer {
 }
 .space-row-comment {
     margin-bottom: 10px;
+}
+.avatar-online {
+    width: 70%;
+    min-height: 25%;
+}
+.photo-profile {
+    margin: 15px auto;
+    border: 1px solid white;
+    border-radius: 5px;
+    color: white;
+    min-height: 82px;
+}
+.wrapper-img-profile {
+    height: 63px;
+
+}
+.img-home-profile {
+    width: 87px!important;
+}
+
+.icon-edit-basic {
+    padding-right: 60px!important;
+    float: right!important;
 }
